@@ -1,16 +1,21 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    namespace 'me.kareluo.popupmenuview'
+    compileSdk 34
 
     defaultConfig {
         applicationId "me.kareluo.popupmenuview"
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,8 +25,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile project(path: ':popmenu')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation project(':popmenu')
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

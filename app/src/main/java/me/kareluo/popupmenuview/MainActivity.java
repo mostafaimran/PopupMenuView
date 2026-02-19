@@ -3,8 +3,8 @@ package me.kareluo.popupmenuview;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.MenuBuilder;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -131,57 +131,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_orientation:
-                if (mMenuView.getOrientation() == LinearLayout.HORIZONTAL) {
-                    mMenuView.setOrientation(LinearLayout.VERTICAL);
-                    mPopupMenuView.setOrientation(LinearLayout.VERTICAL);
-                    mCustomMenuView.setOrientation(LinearLayout.VERTICAL);
-                } else {
-                    mMenuView.setOrientation(LinearLayout.HORIZONTAL);
-                    mPopupMenuView.setOrientation(LinearLayout.HORIZONTAL);
-                    mCustomMenuView.setOrientation(LinearLayout.HORIZONTAL);
-                }
-                break;
-            case R.id.btn_show:
-            case R.id.btn_show1:
-            case R.id.btn_show2:
-            case R.id.btn_show3:
-                mPopupMenuView.show(v);
-                break;
-            case R.id.btn_custom:
-                mCustomMenuView.show(v);
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_orientation) {
+            if (mMenuView.getOrientation() == LinearLayout.HORIZONTAL) {
+                mMenuView.setOrientation(LinearLayout.VERTICAL);
+                mPopupMenuView.setOrientation(LinearLayout.VERTICAL);
+                mCustomMenuView.setOrientation(LinearLayout.VERTICAL);
+            } else {
+                mMenuView.setOrientation(LinearLayout.HORIZONTAL);
+                mPopupMenuView.setOrientation(LinearLayout.HORIZONTAL);
+                mCustomMenuView.setOrientation(LinearLayout.HORIZONTAL);
+            }
+        } else if (id == R.id.btn_show || id == R.id.btn_show1 || id == R.id.btn_show2 || id == R.id.btn_show3) {
+            mPopupMenuView.show(v);
+        } else if (id == R.id.btn_custom) {
+            mCustomMenuView.show(v);
         }
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.radio1:
-                mPopLayout.setSiteMode(PopLayout.SITE_LEFT);
-                mImgPopLayout.setSiteMode(PopLayout.SITE_LEFT);
-                mPopupMenuView.setSites(PopupView.SITE_LEFT, PopupView.SITE_TOP, PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM);
-                mCustomMenuView.setSites(PopupView.SITE_LEFT, PopupView.SITE_TOP, PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM);
-                break;
-            case R.id.radio2:
-                mPopLayout.setSiteMode(PopLayout.SITE_TOP);
-                mImgPopLayout.setSiteMode(PopLayout.SITE_TOP);
-                mPopupMenuView.setSites(PopupView.SITE_TOP, PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM, PopupView.SITE_LEFT);
-                mCustomMenuView.setSites(PopupView.SITE_TOP, PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM, PopupView.SITE_LEFT);
-                break;
-            case R.id.radio3:
-                mPopLayout.setSiteMode(PopLayout.SITE_RIGHT);
-                mImgPopLayout.setSiteMode(PopLayout.SITE_RIGHT);
-                mPopupMenuView.setSites(PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM, PopupView.SITE_LEFT, PopupView.SITE_TOP);
-                mCustomMenuView.setSites(PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM, PopupView.SITE_LEFT, PopupView.SITE_TOP);
-                break;
-            case R.id.radio4:
-                mPopLayout.setSiteMode(PopLayout.SITE_BOTTOM);
-                mImgPopLayout.setSiteMode(PopLayout.SITE_BOTTOM);
-                mPopupMenuView.setSites(PopupView.SITE_BOTTOM, PopupView.SITE_LEFT, PopupView.SITE_TOP, PopupView.SITE_RIGHT);
-                mCustomMenuView.setSites(PopupView.SITE_BOTTOM, PopupView.SITE_LEFT, PopupView.SITE_TOP, PopupView.SITE_RIGHT);
-                break;
+        if (checkedId == R.id.radio1) {
+            mPopLayout.setSiteMode(PopLayout.SITE_LEFT);
+            mImgPopLayout.setSiteMode(PopLayout.SITE_LEFT);
+            mPopupMenuView.setSites(PopupView.SITE_LEFT, PopupView.SITE_TOP, PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM);
+            mCustomMenuView.setSites(PopupView.SITE_LEFT, PopupView.SITE_TOP, PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM);
+        } else if (checkedId == R.id.radio2) {
+            mPopLayout.setSiteMode(PopLayout.SITE_TOP);
+            mImgPopLayout.setSiteMode(PopLayout.SITE_TOP);
+            mPopupMenuView.setSites(PopupView.SITE_TOP, PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM, PopupView.SITE_LEFT);
+            mCustomMenuView.setSites(PopupView.SITE_TOP, PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM, PopupView.SITE_LEFT);
+        } else if (checkedId == R.id.radio3) {
+            mPopLayout.setSiteMode(PopLayout.SITE_RIGHT);
+            mImgPopLayout.setSiteMode(PopLayout.SITE_RIGHT);
+            mPopupMenuView.setSites(PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM, PopupView.SITE_LEFT, PopupView.SITE_TOP);
+            mCustomMenuView.setSites(PopupView.SITE_RIGHT, PopupView.SITE_BOTTOM, PopupView.SITE_LEFT, PopupView.SITE_TOP);
+        } else if (checkedId == R.id.radio4) {
+            mPopLayout.setSiteMode(PopLayout.SITE_BOTTOM);
+            mImgPopLayout.setSiteMode(PopLayout.SITE_BOTTOM);
+            mPopupMenuView.setSites(PopupView.SITE_BOTTOM, PopupView.SITE_LEFT, PopupView.SITE_TOP, PopupView.SITE_RIGHT);
+            mCustomMenuView.setSites(PopupView.SITE_BOTTOM, PopupView.SITE_LEFT, PopupView.SITE_TOP, PopupView.SITE_RIGHT);
         }
     }
 
